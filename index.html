@@ -14,95 +14,142 @@
         }
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px 40px;
+            padding: 25px 40px;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
-        .header h1 { font-size: 28px; margin-bottom: 8px; }
-        .header p { font-size: 14px; opacity: 0.9; }
+        .header h1 { font-size: 24px; margin-bottom: 8px; }
+        .header p { font-size: 13px; opacity: 0.9; }
         
-        .cards {
+        .section {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .section h2 {
+            font-size: 16px;
+            color: #e94560;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .viewer-links {
             display: flex;
+            gap: 15px;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            padding: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
+        }
+        .viewer-link {
+            flex: 1;
+            min-width: 250px;
+            background: #16213e;
+            border-radius: 15px;
+            padding: 20px;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .viewer-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .viewer-link h3 { font-size: 15px; margin-bottom: 8px; }
+        .viewer-link p { font-size: 12px; color: #aaa; }
+        .viewer-link .badge {
+            display: inline-block;
+            background: #e94560;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            margin-left: 8px;
+        }
+        
+        .static-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
         .card {
             background: #16213e;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            width: 400px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            transition: transform 0.3s;
         }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: 250px; object-fit: cover; }
-        .card-content { padding: 20px; }
-        .card h2 { font-size: 16px; margin-bottom: 10px; color: #e94560; }
-        .card p { font-size: 13px; color: #aaa; line-height: 1.6; }
-        
-        .btn-3d {
-            display: block;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: #fff;
-            text-decoration: none;
-            text-align: center;
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-content {
             padding: 15px;
-            margin: 30px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: bold;
-            box-shadow: 0 4px 20px rgba(245, 87, 108, 0.4);
         }
-        .btn-3d:hover { transform: scale(1.02); }
+        .card h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #e94560;
+        }
+        .card p {
+            font-size: 12px;
+            color: #aaa;
+            line-height: 1.5;
+        }
         
         .footer {
             text-align: center;
             padding: 30px;
             color: #666;
-            font-size: 12px;
+            font-size: 11px;
         }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🌬️ Xinjiang Wind Speed Visualization</h1>
-        <p>Compare different visualization schemes for meteorological data</p>
+        <p>Multiple visualization schemes for meteorological data comparison</p>
     </div>
     
-    <a href="3d_viewer.html" class="btn-3d">🕹️ Open 3D Interactive Viewer (NEW!)</a>
+    <div class="section">
+        <h2>🕹️ Interactive Viewers</h2>
+        <div class="viewer-links">
+            <a href="viewer_light.html" class="viewer-link">
+                <h3>📱 Light Viewer <span class="badge">Mobile OK</span></h3>
+                <p>Pure Canvas 2D. Works on all devices including mobile. Fast loading.</p>
+            </a>
+            <a href="3d_viewer.html" class="viewer-link">
+                <h3>🖥️ 3D Viewer <span class="badge">WebGL</span></h3>
+                <p>Three.js 3D visualization. Best on desktop with WebGL support.</p>
+            </a>
+        </div>
+    </div>
     
-    <div class="cards">
-        <div class="card">
-            <img src="scheme_a_contour.png" alt="Scheme A">
-            <div class="card-content">
-                <h2>🎨 Scheme A: Contour Fill</h2>
-                <p>Uses contour lines with color-filled regions. Iso-lines labeled with exact values. Best for scientific publications.</p>
+    <div class="section">
+        <h2>🖼️ Static Schemes</h2>
+        <div class="static-cards">
+            <div class="card">
+                <img src="scheme_a_contour.png" alt="Contour">
+                <div class="card-content">
+                    <h3>Scheme A: Contour Fill</h3>
+                    <p>Professional scientific style with iso-lines labeled. Best for publications.</p>
+                </div>
             </div>
-        </div>
-        
-        <div class="card">
-            <img src="scheme_b_scatter.png" alt="Scheme B">
-            <div class="card-content">
-                <h2>●●● Scheme B: Scatter Points</h2>
-                <p>Each grid point as a circle. Size and color represent wind speed. Good for showing data distribution patterns.</p>
+            <div class="card">
+                <img src="scheme_b_scatter.png" alt="Scatter">
+                <div class="card-content">
+                    <h3>Scheme B: Scatter Points</h3>
+                    <p>Point-based visualization showing data granularity.</p>
+                </div>
             </div>
-        </div>
-        
-        <div class="card">
-            <img src="scheme_c_hexbin.png" alt="Scheme C">
-            <div class="card-content">
-                <h2>⬡ Scheme C: Hexbin Grid</h2>
-                <p>Aggregates data into hexagonal bins. Each hex shows average wind speed. Modern cartographic style.</p>
+            <div class="card">
+                <img src="scheme_c_hexbin.png" alt="Hexbin">
+                <div class="card-content">
+                    <h3>Scheme C: Hexbin Grid</h3>
+                    <p>Modern hexagonal aggregation. Balanced clarity and style.</p>
+                </div>
             </div>
         </div>
     </div>
     
     <div class="footer">
-        <p>Data Source: ICON Weather Model (~7km) | Grid Resolution: 30km | Generated by Claw-KnowledgeMaster</p>
+        <p>Data: ICON Weather Model (~7km) | Generated by Claw-KnowledgeMaster</p>
     </div>
 </body>
 </html>
